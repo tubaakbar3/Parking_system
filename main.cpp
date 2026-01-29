@@ -16,7 +16,6 @@ int main() {
         askari->addArea(name); askari->addSlotsToArea(name, 8);
     }
     network.addBuilding(askari);
-
     // 3. Monal (6 floors parking)
     Zone* monal = new Zone("Lahore Garrison University", 100, 100);
     for(int i=1; i<=6; i++) {
