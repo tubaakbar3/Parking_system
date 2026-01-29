@@ -7,19 +7,16 @@
 #include <cmath>
 #include <windows.h>
 #include "ParkingArea.h"
-
 struct AreaNode {
     ParkingArea* area;
     AreaNode* next;
     AreaNode(std::string name) { area = new ParkingArea(name); next = nullptr; }
 };
-
 class Zone {
 private:
     std::string zoneName;
     AreaNode* head;
     int posX, posY;
-
 public:
     Zone(std::string name, int x, int y) : zoneName(name), head(nullptr), posX(x), posY(y) {}
 
