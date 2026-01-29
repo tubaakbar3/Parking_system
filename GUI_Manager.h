@@ -76,19 +76,23 @@ public:
 
             FillRect(hdc, &rect, (HBRUSH)GetStockObject(BLACK_BRUSH));
         
-            HFONT hTitleFont = CreateFontW(30, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Segoe UI");
+            HFONT hTitleFont = CreateFontW(30, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH | FF_SWISS, L"Segoe UI");
             HFONT hSubFont = CreateFontW(18, 0, 0, 0, FW_SEMIBOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Segoe UI");
             HFONT hSlotFont = CreateFontW(14, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Segoe UI");
             HFONT hEmojiFont = CreateFontW(24, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, 0, 0, 0, 0, L"Segoe UI Emoji");
 
             SelectObject(hdc, hTitleFont);
         
-            SetTextColor(hdc, RGB(255, 255, 255)); // White text
-            SetBkColor(hdc, RGB(0, 0, 0));         // FORCE background color to BLACK
-            SetBkMode(hdc, OPAQUE);                // Use the color we just set
+            SelectObject(hdc, hTitleFont);
+            SetTextColor(hdc, RGB(255, 255, 255)); 
+            SetBkColor(hdc, RGB(0, 0, 0));
+            SetBkMode(hdc, OPAQUE);
+            SetTextAlign(hdc, TA_CENTER | TA_TOP); // Ensures pixel-perfect centering
 
-            RECT rTitle = { 0, 5, winWidth, 45 };
-            DrawTextW(hdc, L"CanttParking Management System", -1, &rTitle, DT_CENTER | DT_SINGLELINE);
+// Adjust rTitle to be slightly larger to prevent edge clipping
+            RECT rTitle = { 0, 5, winWidth, 55 }; 
+            ExtTextOutW(hdc, winWidth / 2, 5, ETO_OPAQUE, &rTitle, L"Cantt Parking System", 31, NULL);
+
 
             SelectObject(hdc, hSubFont);
             SetTextColor(hdc, RGB(200, 200, 200));
@@ -125,7 +129,7 @@ public:
                     SetTextColor(hdc, RGB(255, 255, 255)); // White text
                     SetBkMode(hdc, TRANSPARENT);           // Transparent background
                     RECT rTitle = { 0, 5, winWidth, 40 };
-                DrawTextW(hdc, L"Cantt Parking Management System", -1, &rTitle, DT_CENTER | DT_SINGLELINE);
+                    DrawTextW(hdc, L"Cantt Parking System", -1, &rTitle, DT_CENTER | DT_SINGLELINE);
                     
                     FillRect(hdc, &rSlot, hSlotBrush);
                     FrameRect(hdc, &rSlot, (HBRUSH)GetStockObject(WHITE_BRUSH));
@@ -216,7 +220,7 @@ public:
         wc.hCursor = LoadCursor(NULL, IDC_ARROW);
         wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
         RegisterClassW(&wc);
-        CreateWindowW(L"CanttCompactGUI", L"Cantt Parking Management System", 
+        CreateWindowW(L"CanttCompactGUI", L"Cantt Parking System", 
                       WS_OVERLAPPEDWINDOW | WS_VISIBLE, 50, 50, 1100, 740, NULL, NULL, wc.hInstance, NULL);
         MSG msg;
         while (GetMessage(&msg, NULL, 0, 0)) { TranslateMessage(&msg); DispatchMessage(&msg); }
