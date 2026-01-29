@@ -39,7 +39,7 @@ public:
             CreateWindowW(L"Static", L"FLOOR:", WS_VISIBLE | WS_CHILD, 390, 620, 60, 20, hwnd, NULL, NULL, NULL);
             hFloorCombo = CreateWindowW(L"Combobox", NULL, WS_VISIBLE | WS_CHILD | CBS_DROPDOWNLIST, 450, 618, 120, 200, hwnd, (HMENU)ID_COMBO_FLOOR, NULL, NULL);
 
-            CreateWindowW(L"Static", L"PLATE:", WS_VISIBLE | WS_CHILD, 150, 660, 60, 20, hwnd, NULL, NULL, NULL);
+            CreateWindowW(L"Static", L"PLATE NUMBER:", WS_VISIBLE | WS_CHILD, 150, 660, 60, 20, hwnd, NULL, NULL, NULL);
             hPlateInput = CreateWindowW(L"Edit", L"", WS_VISIBLE | WS_CHILD | WS_BORDER, 210, 658, 120, 25, hwnd, (HMENU)ID_INPUT_PLATE, NULL, NULL);
 
             hTypeCombo = CreateWindowW(L"Combobox", NULL, WS_VISIBLE | WS_CHILD | CBS_DROPDOWNLIST, 340, 658, 80, 200, hwnd, (HMENU)ID_COMBO_TYPE, NULL, NULL);
